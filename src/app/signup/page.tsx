@@ -35,7 +35,7 @@ export default function SignUp() {
         try {
             await createUser(email, password);
             
-            const res = await axios.post('/api/checkout', {
+            const res = await axios.post('/api/stripe/checkout', {
                 email: email,
                 lookup_key: 'Test Plan'
             })
