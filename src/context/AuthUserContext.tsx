@@ -4,13 +4,43 @@ import {
     useContext, 
     PropsWithChildren
 } from 'react'
-
+import { User, IdTokenResult } from 'firebase/auth'
 import useFirebaseAuth from '../lib/useFirebaseAuth';
+
+const defaultIdTokenResult: IdTokenResult = {
+    authTime: '',
+    expirationTime: '', 
+    issuedAtTime: '',
+    signInProvider: '',
+    signInSecondFactor: '', 
+    token: '', 
+    claims: {}
+}
+
+const defaultUser: User = {
+    emailVerified: false,
+    isAnonymous: false,
+    metadata: {},
+    providerData: [],
+    refreshToken: '', 
+    tenantId: '', 
+    delete: (): Promise<void> => Promise.resolve(), 
+    getIdToken: (forceRefresh?: boolean): Promise<string> => Promise.resolve(''),
+    getIdTokenResult: (): Promise<IdTokenResult> => Promise.resolve(defaultIdTokenResult), 
+    reload: (): Promise<void> => Promise.resolve(), 
+    toJSON: async () => {},
+    displayName: '',
+    email: '', 
+    phoneNumber: '', 
+    photoURL: '',
+    providerId: '', 
+    uid: ''
+}
 
 const authUserContext = createContext({
     authUser: {},
     loading: true,
-    createUser: (email: string, password: string) => {},
+    register: (firstName: string, email: string, password: string): Promise<User | null> => Promise.resolve(defaultUser),
     signOut: async () => {}
 });
 

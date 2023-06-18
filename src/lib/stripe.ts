@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv'
 
 dotenv.config();
 
-const apiKey = process.env.STRIPE_API_KEY;
+const apiKey = process.env.STRIPE_SECRET_KEY;
 let stripe: Stripe;
 
 if (apiKey) {

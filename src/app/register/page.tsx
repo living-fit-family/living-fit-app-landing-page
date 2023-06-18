@@ -6,13 +6,40 @@ import { useRouter } from 'next/navigation';
 import { useAuth, } from '../../context/AuthUserContext';
 import config from '../../config/index.json';
 import { Transition } from '@headlessui/react';
+import { User } from 'firebase/auth'
 import Image from 'next/image';
 
-const showError = (error: boolean) => {
+const errorMessages = {
+    invalidEmail: "Please enter a valid email.",
+    duplicateEmail: "Email already exists."
+}
+
+const isValidEmail = (email: string) => {
+    var regex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+    return regex.test(email);
+}
+
+const showError = (error: boolean, errorMessage: string) => {
     if (error) {
         return (
-            <p className="text-red-500 text-xs mx-auto italic">Email already exists.</p>
+            <p className="text-red-500 text-xs mx-auto italic">{errorMessage}</p>
         )
+    }
+}
+
+const createCheckoutSession = async (user: User) => {
+    const router = useRouter()
+
+    const res = await axios.post('/api/create/checkout/session', {
+        email: user.email,
+        uid: user.uid,
+        lookup_key: 'Test Plan'
+    })
+
+    const { session } = res.data
+
+    if (session != null) {
+        router.push(session.url)
     }
 }
 
@@ -23,33 +50,30 @@ export default function SignUp() {
     const [password, setPassWord] = useState('');
     const [showOverlay, setShowOverlay] = useState(false)
     const [error, setError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
 
-    const router = useRouter()
-    const { createUser } = useAuth()
+    const { register } = useAuth()
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError(false)
-        setShowOverlay(true)
 
         try {
-            await createUser(email, password);
-            
-            const res = await axios.post('/api/stripe/checkout', {
-                email: email,
-                lookup_key: 'Test Plan'
-            })
-
-            const { session } = res.data
-
-            if (session != null) {
-                router.push(session.url)
+            if (isValidEmail(email)) {
+                setShowOverlay(true)
+                const user: User | null = await register(firstName, email, password);
+                if (user) createCheckoutSession(user)
+            } else {
+                setError(true)
+                setErrorMessage(errorMessages.invalidEmail)
             }
         } catch (err) {
             setError(true)
+            setErrorMessage(errorMessages.duplicateEmail)
             setShowOverlay(false)
         }
     };
+
     const handleChange = (func: Function) => (e: ChangeEvent<HTMLInputElement>) => {
         func(e.target.value);
     };
@@ -81,7 +105,7 @@ export default function SignUp() {
                             name="lastname"
                             placeholder="Last Name"
                             required />
-                        {showError(error)}
+                        {showError(error, errorMessage)}
                         <input
                             value={email}
                             onChange={handleChange(setEmail)}

@@ -5,7 +5,12 @@ import {
 } from 'react';
 
 import { auth } from './firebase';
-import { User, createUserWithEmailAndPassword } from 'firebase/auth';
+import { 
+    User, 
+    createUserWithEmailAndPassword, 
+    sendEmailVerification, 
+    updateProfile 
+} from 'firebase/auth';
 
 const formatAuthUser = (user: User) => ({
     uid: user.uid,
@@ -36,12 +41,23 @@ export default function useFirebaseAuth() {
         setLoading(true);
     };
 
-    const resetPassword = () => {
-        
-    }
-
-    const createUser = (email: string, password: string) => {
-       return createUserWithEmailAndPassword(auth, email, password)
+    const register =  async (firstName: string, email: string, password: string): Promise<User | null> => {
+       try {
+        await createUserWithEmailAndPassword(auth, email, password).catch((err) =>
+          console.log(err)
+        );
+        if (auth.currentUser) {
+            await sendEmailVerification(auth.currentUser).catch((err) =>
+            console.log(err)
+            );
+            await updateProfile(auth.currentUser, { displayName: firstName }).catch(
+            (err) => console.log(err)
+            );
+        }
+      } catch (err) {
+        console.log(err);
+      }
+       return auth.currentUser;
     }
 
     const signOut = async () => {
@@ -57,7 +73,7 @@ export default function useFirebaseAuth() {
     return {
         authUser,
         loading,
-        createUser,
+        register,
         signOut
     }
 }
