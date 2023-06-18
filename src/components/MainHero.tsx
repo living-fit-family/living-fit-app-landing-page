@@ -23,7 +23,7 @@ const MainHero = () => {
         <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
           <div className="rounded-md shadow">
             <button
-              onClick={() => router.push('/signup')}
+              onClick={() => router.push('/register')}
               id="checkout-and-portal-button"
               className={`w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-background bg-primary hover:bg-border hover:text-primary md:py-4 md:text-lg md:px-10`}>
               Get Started
