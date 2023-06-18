@@ -28,22 +28,23 @@ const showError = (error: boolean, errorMessage: string) => {
 }
 
 const createCheckoutSession = async (user: User) => {
-    const router = useRouter()
-
-    const res = await axios.post('/api/create/checkout/session', {
-        email: user.email,
-        uid: user.uid,
-        lookup_key: 'Test Plan'
-    })
-
-    const { session } = res.data
-
-    if (session != null) {
-        router.push(session.url)
+    try {
+        const res = await axios.post('/api/create/checkout/session', {
+            email: user.email,
+            uid: user.uid,
+            lookup_key: 'Test Plan'
+        })
+        const { session } = res.data
+        return session;
+    } catch (err) {
+        throw err;
     }
 }
 
 export default function SignUp() {
+    const { register } = useAuth()
+    const router = useRouter()
+    
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -51,8 +52,7 @@ export default function SignUp() {
     const [showOverlay, setShowOverlay] = useState(false)
     const [error, setError] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
-
-    const { register } = useAuth()
+    
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -62,7 +62,10 @@ export default function SignUp() {
             if (isValidEmail(email)) {
                 setShowOverlay(true)
                 const user: User | null = await register(firstName, email, password);
-                if (user) createCheckoutSession(user)
+                if (user) {
+                    const session = await createCheckoutSession(user)
+                    router.push(session.url)
+                }
             } else {
                 setError(true)
                 setErrorMessage(errorMessages.invalidEmail)
