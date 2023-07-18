@@ -29,8 +29,8 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
       paymentAccountId,
     }
   })
-
-  await reqInstance.post(`${process.env.CUSTOMER_ACCOUNT_MANAGER_BASE_URL}/create`)
+  
+  await reqInstance.post(`${process.env.CUSTOMER_ACCOUNT_MANAGER_BASE_URL}/users/create`)
 }
 
 export async function POST(request: NextRequest) {

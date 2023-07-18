@@ -9,7 +9,8 @@ import {
     User, 
     createUserWithEmailAndPassword, 
     sendEmailVerification, 
-    updateProfile 
+    updateProfile,
+    signInWithEmailAndPassword
 } from 'firebase/auth';
 
 const formatAuthUser = (user: User) => ({
@@ -41,7 +42,7 @@ export default function useFirebaseAuth() {
         setLoading(true);
     };
 
-    const register =  async (firstName: string, email: string, password: string): Promise<User | null> => {
+    const register = async (firstName: string, email: string, password: string): Promise<User | null> => {
        try {
         await createUserWithEmailAndPassword(auth, email, password).catch((err) =>
           console.log(err)
@@ -60,6 +61,17 @@ export default function useFirebaseAuth() {
        return auth.currentUser;
     }
 
+    const signIn = async (email: string, password: string): Promise<User | null> => {
+        try {
+            signInWithEmailAndPassword(auth, email, password).catch((err) => {
+                console.log(err)
+            })
+        } catch (err) {
+            console.log(err);
+        }
+        return auth.currentUser;
+    }
+
     const signOut = async () => {
         await auth.signOut()
         clear()
@@ -74,6 +86,7 @@ export default function useFirebaseAuth() {
         authUser,
         loading,
         register,
+        signIn,
         signOut
     }
 }

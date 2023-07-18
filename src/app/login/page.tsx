@@ -25,26 +25,23 @@ const showError = (errorMessage: string) => {
     )
 }
 
-const createCheckoutSession = async (user: User) => {
+const createPortalSession = async (uid: string) => {
     try {
-        const res = await axios.post('/api/create/checkout/session', {
-            email: user.email,
-            uid: user.uid,
-            lookup_key: 'Test Plan'
+        const res = await axios.post('/api/create/portal/session', {
+            uid,
         })
-        const { session } = res.data
-        return session;
+        const { portalSession } = res.data
+        return portalSession;
     } catch (err) {
         throw err;
     }
 }
 
-export default function SignUp() {
-    const { register } = useAuth()
+export default function SignIn() {
+    const { signIn } = useAuth()
     const router = useRouter()
     
     const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassWord] = useState('');
     const [showOverlay, setShowOverlay] = useState(false)
@@ -59,9 +56,9 @@ export default function SignUp() {
         try {
             if (isValidEmail(email)) {
                 setShowOverlay(true)
-                const user: User | null = await register(firstName, email, password);
+                const user: User | null = await signIn(email, password);
                 if (user) {
-                    const session = await createCheckoutSession(user)
+                    const session = await createPortalSession(user.uid)
                     router.push(session.url)
                 }
             } else {
@@ -91,24 +88,8 @@ export default function SignUp() {
                     <h1 className="mb-8 text-3xl text-center">Sign up</h1>
                     <form onSubmit={handleSubmit}>
                         <input
-                            value={firstName}
-                            onChange={handleChange(setFirstName)}
-                            type="text"
-                            className="block border border-grey-light w-full p-3 rounded mb-4"
-                            name="firstname"
-                            placeholder="First Name"
-                            required />
-                        <input
-                            value={lastName}
-                            onChange={handleChange(setLastName)}
-                            type="text"
-                            className="block border border-grey-light w-full p-3 rounded mb-4"
-                            name="lastname"
-                            placeholder="Last Name"
-                            required />
-                        {error ? showError(errorMessage) : null}
-                        <input
                             value={email}
+                            autoFocus
                             onChange={handleChange(setEmail)}
                             type="text"
                             className="block border border-grey-light w-full p-3 rounded mb-4"
@@ -126,7 +107,7 @@ export default function SignUp() {
                         <button
                             type="submit"
                             className="w-full text-center py-3 rounded bg-primary text-white hover:bg-green-dark focus:outline-none my-1"
-                        >Create Account</button>
+                        >Sign In</button>
                     </form>
                     <div className="text-center text-sm text-grey-dark mt-4">
                         By signing up, you agree to the&nbsp;

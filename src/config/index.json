@@ -27,9 +27,9 @@
       "href": "#"
     },
     "mainHero": {
-      "title": "Be a part of the",
+      "title": "Start training with the",
       "subtitle": "Living Fit Family.",
-      "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+      "description": "Join my in person training program from wherever you may live. Start training on the same workout splits as my local clients, take advantage of the specific nutritional guidance, and enjoy achieving real results. Over the years, hundreds of women have met and exceeded their fitness goals training as a part of the Living Fit Family. Now you can too!",
       "img": "/assets/images/happyTeam.jpg",
       "primaryAction": {
         "text": "Get started",
@@ -41,44 +41,47 @@
       }
     },
     "product": {
-      "title": "Build your own workout",
+      "title": "Real results with structured splits",
       "items": [
         {
-          "title": "A plug n play template",
-          "description": "Just edit the config.json file with details about your company and voila your beautiful state of the art landing page is ready to go live! Remember to also update your assets, add any images you want to show to /assets/images and link them in the config.json",
+          "title": "Effectively plan ahead for productive workouts",
+          "description": "Stay disciplined and consistent with the provided workout templates. Plan ahead by selecting your excerises for each day ahead of time.",
+          "old_description": "Just edit the config.json file with details about your company and voila your beautiful state of the art landing page is ready to go live! Remember to also update your assets, add any images you want to show to /assets/images and link them in the config.json",
           "img": "/assets/images/product1.png"
         },
         {
-          "title": "Make it your own!",
-          "description": "Play around with the theme.ts file and configure the color palette to match the branding of your company! If you're feeling wild, maybe change some tailwind css as well!",
+          "title": "Make it personal",
+          "description": "Create your workout based on what you have availabe. Whether you're at a commercial gym or home gym, there are a variety of exercise options that can work for you. ",
           "img": "/assets/images/product2.png"
         }
       ]
     },
     "features": {
-      "title": "Latest & greatest ",
-      "subtitle": "All the best technologies out there!",
-      "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+      "title": "How it works ",
+      "subtitle": "Updated training splits every four weeks",
+      "description": "Get the same results from this app as clients would with in person training. Updates to the app ensure everyone stays on the same structured split, whether local or remote.",
+
+      "old_description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
       "items": [
         {
-          "name": "React.js",
-          "description": "React is a free and open-source front-end JavaScript library for building user interfaces or UI components.",
+          "name": "Exercise Demos",
+          "description": "Each excersise option is paired with a video demonstration from in person sessions, including number of sets and reps.",
           "icon": "/assets/images/react.png"
         },
         {
-          "name": "Tailwind",
-          "description": "Tailwind CSS is a highly customizable, low-level CSS framework for quickly creating beautiful designs without any annoying opinionated stylesheet nonsense.",
+          "name": "Interchangeable exercise options",
+          "description": "Select a variety of exercises to customize your individual workout routines, within the structured split.",
           "icon": "/assets/images/tailwindcss.svg"
         },
         {
-          "name": "Next.js",
-          "description": "Next.js is a framework for server-rendered React applications using Next.js.",
-          "icon": "/assets/images/nextjs.svg"
+          "name": "Personalized Nutrition Information",
+          "description": "Daily macros are caculated based on your unique goals and current physique. Your personalized macros are paired with helpful nutritional tips. ",
+          "icon": "/assets/images/ts.png"
         },
         {
-          "name": "Typescript",
-          "description": "TypeScript is a programming language developed and maintained by Microsoft.",
-          "icon": "/assets/images/ts.png"
+          "name": "Live chat with Luke and other members",
+          "description": "Share your progreess, talk with other members, and get helpful tips from the trainer live from the app.",
+          "icon": "/assets/images/nextjs.svg"
         }
       ]
     },
