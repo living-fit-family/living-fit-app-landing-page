@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
             missing_payment_method: 'cancel',
           },
         },
-        trial_end: 1693540800,
+        trial_end: 1693800000,
       },
       payment_method_collection: 'if_required',
       success_url: `${process.env.LIVING_FIT_FAMILY_BASE_URL}/?success=true&session_id={CHECKOUT_SESSION_ID}`,
