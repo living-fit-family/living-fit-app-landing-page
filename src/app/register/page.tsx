@@ -30,7 +30,7 @@ const createCheckoutSession = async (user: User) => {
         const res = await axios.post('/api/create/checkout/session', {
             email: user.email,
             uid: user.uid,
-            lookup_key: 'Test Plan'
+            lookup_key: 'Living Fit App Monthly Subscription'
         })
         const { session } = res.data
         return session;
