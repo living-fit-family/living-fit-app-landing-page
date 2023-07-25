@@ -26,6 +26,15 @@ export async function POST(request: NextRequest) {
         },
       ],
       mode: 'subscription',
+      subscription_data: {
+        trial_settings: {
+          end_behavior: {
+            missing_payment_method: 'cancel',
+          },
+        },
+        trial_period_days: 30,
+      },
+      payment_method_collection: 'if_required',
       success_url: `${process.env.LIVING_FIT_FAMILY_BASE_URL}/?success=true&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.LIVING_FIT_FAMILY_BASE_URL}/?canceled=true`,
     });
