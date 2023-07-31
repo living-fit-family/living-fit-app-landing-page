@@ -25,11 +25,13 @@ const showError = (errorMessage: string) => {
     )
 }
 
-const createCheckoutSession = async (user: User) => {
+const createCheckoutSession = async (uid: string, email: string, firstName: string, lastName: string) => {
     try {
         const res = await axios.post('/api/create/checkout/session', {
-            email: user.email,
-            uid: user.uid,
+            firstName,
+            lastName,
+            email: email,
+            uid: uid,
             lookup_key: 'Living Fit App Monthly Subscription'
         })
         const { session } = res.data
@@ -61,7 +63,7 @@ export default function SignUp() {
                 setShowOverlay(true)
                 const user: User | null = await register(firstName, email, password);
                 if (user) {
-                    const session = await createCheckoutSession(user)
+                    const session = await createCheckoutSession(user.uid, firstName, lastName, email)
                     router.push(session.url)
                 }
             } else {
