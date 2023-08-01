@@ -19,9 +19,6 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
   } = metadata as CustomMetadata
 
   let reqInstance = axios.create({
-    headers: {
-      Authorization: `Bearer 1234`
-    },
     data: {
       uid,
       firstName,

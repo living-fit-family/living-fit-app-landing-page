@@ -5,6 +5,7 @@ import MainHeroImage from '../components/MainHeroImage';
 import Product from '../components/Product';
 import LazyShow from '../components/LazyShow';
 import Features from '../components/Features';
+import Pricing from '../components/Pricing'
 
 export default function App() {
   return (
@@ -28,6 +29,11 @@ export default function App() {
         <LazyShow>
           <>
             <Features />
+          </>
+        </LazyShow>
+        <LazyShow>
+          <>
+            <Pricing />
           </>
         </LazyShow>
       </div>

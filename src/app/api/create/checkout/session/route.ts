@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
   
   const uid = jsonData.uid
   const firstName = jsonData.firstName;
-  const lastName = jsonData.firstName;
+  const lastName = jsonData.lastName;
   const email = jsonData.email;
   
   const session = await stripe.checkout.sessions.create({
@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
       trial_end: 1693800000,
     },
     payment_method_collection: 'if_required',
-    success_url: `${process.env.LIVING_FIT_FAMILY_BASE_URL}/?success=true&session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `${process.env.LIVING_FIT_FAMILY_BASE_URL}/confirmation/?success=true&session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.LIVING_FIT_FAMILY_BASE_URL}/?canceled=true`,
   });
   if (session.url) {

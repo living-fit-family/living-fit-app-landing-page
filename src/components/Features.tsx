@@ -30,7 +30,7 @@ const Features = () => {
                   <div
                     className={`absolute flex items-center justify-center h-12 w-12 rounded-md bg-background text-tertiary border-primary border-4`}
                   >
-                    <Image
+                    <img
                       className={`inline-block h-6 w-6 rounded-full`}
                       src={feature.icon}
                       alt={feature.name}
