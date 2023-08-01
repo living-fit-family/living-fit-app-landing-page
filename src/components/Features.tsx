@@ -28,13 +28,18 @@ const Features = () => {
               <div key={feature.name} className="relative">
                 <dt>
                   <div
-                    className={`absolute flex items-center justify-center h-12 w-12 rounded-md bg-background text-tertiary border-primary border-4`}
+                    className={`absolute flex items-center justify-center h-12 w-12 rounded-md bg-background text-tertiary`}
                   >
-                    <img
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+</svg>
+
+
+                    {/* <img
                       className={`inline-block h-6 w-6 rounded-full`}
                       src={feature.icon}
                       alt={feature.name}
-                    />
+                    /> */}
                   </div>
                   <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
                     {feature.name}
