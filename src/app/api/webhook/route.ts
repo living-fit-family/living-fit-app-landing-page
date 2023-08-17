@@ -6,23 +6,20 @@ import axios from 'axios';
 async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) {
   type CustomMetadata = {
     uid: string,
-    firstName: string,
-    lastName: string,
+    username: string,
   }
 
   const { customer: paymentAccountId, metadata } = session;
 
   const {
     uid,
-    firstName,
-    lastName
+    username,
   } = metadata as CustomMetadata
 
   let reqInstance = axios.create({
     data: {
       uid,
-      firstName,
-      lastName,
+      username,
       paymentAccountId,
     }
   })

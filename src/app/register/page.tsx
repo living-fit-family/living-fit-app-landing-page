@@ -25,13 +25,12 @@ const showError = (errorMessage: string) => {
     )
 }
 
-const createCheckoutSession = async (uid: string, email: string, firstName: string, lastName: string) => {
+const createCheckoutSession = async (uid: string, email: string, username: string) => {
     try {
         const res = await axios.post('/api/create/checkout/session', {
             uid: uid,
             email,
-            firstName,
-            lastName,
+            username,
         })
         const { session } = res.data
         return session;
@@ -44,8 +43,7 @@ export default function SignUp() {
     const { register } = useAuth()
     const router = useRouter()
     
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassWord] = useState('');
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -61,9 +59,9 @@ export default function SignUp() {
         try {
             if (isValidEmail(email)) {
                 setShowOverlay(true)
-                const user: User | null = await register(firstName, email, password);
+                const user: User | null = await register(username, email, password);
                 if (user) {
-                    const session = await createCheckoutSession(user.uid, email, firstName, lastName)
+                    const session = await createCheckoutSession(user.uid, email, username)
                     router.push(session.url)
                 }
             } else {
@@ -93,24 +91,16 @@ export default function SignUp() {
             <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
                 <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
                     <span className="sr-only">{companyName}</span>
-                    {/* <Image alt="logo" className="h-16 w-auto m-auto sm:h-16" src={logo} /> */}
+                    <img alt="logo" className="h-16 w-auto m-auto sm:h-16" src={logo} />
                     <h1 className="mb-8 text-3xl text-center">Sign up</h1>
                     <form onSubmit={handleSubmit}>
                         <input
-                            value={firstName}
-                            onChange={handleChange(setFirstName)}
+                            value={username}
+                            onChange={handleChange(setUsername)}
                             type="text"
                             className="block border border-grey-light w-full p-3 rounded mb-4"
-                            name="firstname"
-                            placeholder="First Name"
-                            required />
-                        <input
-                            value={lastName}
-                            onChange={handleChange(setLastName)}
-                            type="text"
-                            className="block border border-grey-light w-full p-3 rounded mb-4"
-                            name="lastname"
-                            placeholder="Last Name"
+                            name="username"
+                            placeholder="Username"
                             required />
                         {error ? showError(errorMessage) : null}
                         <input

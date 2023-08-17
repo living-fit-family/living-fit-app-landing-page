@@ -5,8 +5,7 @@ export async function POST(request: NextRequest) {
   const jsonData = await request.json();
   
   const uid = jsonData.uid
-  const firstName = jsonData.firstName;
-  const lastName = jsonData.lastName;
+  const username = jsonData.username;
   const email = jsonData.email;
   
   const session = await stripe.checkout.sessions.create({
@@ -14,8 +13,7 @@ export async function POST(request: NextRequest) {
     customer_email: email,
     metadata: {
       uid,
-      firstName,
-      lastName
+      username,
     },
     line_items: [
       {

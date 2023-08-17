@@ -61,10 +61,10 @@ const Header = () => {
                 </Link>
               ))}
               <a
-                href="#"
+                href="/register"
                 className={`font-medium text-primary hover:text-secondary`}
               >
-                Call to action
+                Get Started
               </a>
             </div>
           </nav>

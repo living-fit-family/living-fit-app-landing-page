@@ -41,7 +41,7 @@ export default function SignIn() {
     const { signIn } = useAuth()
     const router = useRouter()
     
-    const [firstName, setFirstName] = useState('');
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassWord] = useState('');
     const [showOverlay, setShowOverlay] = useState(false)

@@ -42,7 +42,7 @@ export default function useFirebaseAuth() {
         setLoading(true);
     };
 
-    const register = async (firstName: string, email: string, password: string): Promise<User | null> => {
+    const register = async (username: string, email: string, password: string): Promise<User | null> => {
        try {
         await createUserWithEmailAndPassword(auth, email, password).catch((err) =>
           console.log(err)
@@ -51,7 +51,7 @@ export default function useFirebaseAuth() {
             await sendEmailVerification(auth.currentUser).catch((err) =>
             console.log(err)
             );
-            await updateProfile(auth.currentUser, { displayName: firstName }).catch(
+            await updateProfile(auth.currentUser, { displayName: username }).catch(
             (err) => console.log(err)
             );
         }

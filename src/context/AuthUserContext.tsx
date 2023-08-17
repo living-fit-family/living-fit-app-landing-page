@@ -40,7 +40,7 @@ const defaultUser: User = {
 const authUserContext = createContext({
     authUser: {},
     loading: true,
-    register: (firstName: string, email: string, password: string): Promise<User | null> => Promise.resolve(defaultUser),
+    register: (username: string, email: string, password: string): Promise<User | null> => Promise.resolve(defaultUser),
     signIn: (email: string, password: string): Promise<User | null> => Promise.resolve(defaultUser),
     signOut: async () => {}
 });

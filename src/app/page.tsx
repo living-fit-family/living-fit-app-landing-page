@@ -31,11 +31,11 @@ export default function App() {
             <Features />
           </>
         </LazyShow>
-        {/* <LazyShow>
+        <LazyShow>
           <>
             <Pricing />
           </>
-        </LazyShow> */}
+        </LazyShow>
       </div>
   );
 }
