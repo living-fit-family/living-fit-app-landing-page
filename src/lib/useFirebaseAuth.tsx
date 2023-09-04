@@ -4,15 +4,13 @@ import {
     useEffect 
 } from 'react';
 
-import { auth, db } from './firebase';
+import { auth } from './firebase';
 import { 
     User, 
     createUserWithEmailAndPassword, 
     sendEmailVerification, 
     signInWithEmailAndPassword
 } from 'firebase/auth';
-
-import { doc, setDoc } from "firebase/firestore"; 
 
 const formatAuthUser = (user: User) => ({
     uid: user.uid,
@@ -50,10 +48,6 @@ export default function useFirebaseAuth() {
         );
         if (auth.currentUser) {
             await sendEmailVerification(auth.currentUser).catch((err) => console.log(err));
-            await setDoc(doc(db, "users", auth.currentUser.uid), {
-                name: username,
-                username: username,
-            });
         }
       } catch (err) {
         console.log(err);
