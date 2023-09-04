@@ -179,7 +179,7 @@ export default function SignUp() {
                 </div>
                 <div className="text-grey-dark mt-6">
                     Already have an account?&nbsp;
-                    <a className="no-underline border-b border-blue text-blue" href="../login/">
+                    <a className="no-underline border-b border-blue text-blue" href="https://billing.stripe.com/p/login/5kAeXO3HI3JxeNafYY">
                         Log in
                     </a>.
                 </div>
