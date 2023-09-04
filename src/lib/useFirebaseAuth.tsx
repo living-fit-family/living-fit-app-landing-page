@@ -52,6 +52,7 @@ export default function useFirebaseAuth() {
             await sendEmailVerification(auth.currentUser).catch((err) => console.log(err));
             await setDoc(doc(db, "users", auth.currentUser.uid), {
                 name: username,
+                username: username,
             });
         }
       } catch (err) {
