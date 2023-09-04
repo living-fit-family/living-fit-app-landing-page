@@ -17,6 +17,13 @@ const nextConfig = {
           },
         ];
       },
+      async redirects() {
+        return [
+          process.env.MAINTENANCE_MODE === "1"
+          ? { source: "/", destination: "/maintenance", permanent: false }
+          : null,
+        ].filter(Boolean);
+      }
 }
 
 module.exports = nextConfig
