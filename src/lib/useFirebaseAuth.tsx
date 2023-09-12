@@ -1,16 +1,27 @@
 'use client'
+
 import { 
     useState, 
     useEffect 
 } from 'react';
 
-import { auth } from './firebase';
 import { 
-    User, 
+    auth, 
+    db 
+} from './firebase';
+
+import {
+    User,
     createUserWithEmailAndPassword, 
     sendEmailVerification, 
     signInWithEmailAndPassword
 } from 'firebase/auth';
+
+import { 
+    doc, 
+    setDoc 
+} from "firebase/firestore"; 
+
 
 const formatAuthUser = (user: User) => ({
     uid: user.uid,
@@ -44,13 +55,16 @@ export default function useFirebaseAuth() {
     const register = async (username: string, email: string, password: string): Promise<User | null> => {
        try {
         await createUserWithEmailAndPassword(auth, email, password).catch((err) =>
-          console.log(err)
+          { throw err }
         );
         if (auth.currentUser) {
             await sendEmailVerification(auth.currentUser).catch((err) => console.log(err));
+            await setDoc(doc(db, "users", auth.currentUser.uid), {
+                username: username,
+            });
         }
       } catch (err) {
-        console.log(err);
+        throw err
       }
        return auth.currentUser;
     }
