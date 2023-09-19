@@ -12,14 +12,16 @@ import {
 
 import {
     User,
-    createUserWithEmailAndPassword, 
-    sendEmailVerification, 
+    createUserWithEmailAndPassword,
+    sendEmailVerification,
+    updateProfile,
     signInWithEmailAndPassword
 } from 'firebase/auth';
 
 import { 
     doc, 
-    setDoc 
+    getDoc,
+    onSnapshot
 } from "firebase/firestore"; 
 
 
@@ -31,6 +33,7 @@ const formatAuthUser = (user: User) => ({
 export default function useFirebaseAuth() {
     const [authUser, setAuthUser] = useState({})
     const [loading, setLoading] = useState(true)
+    const [firestoreUser, setFirestoreUser] = useState({})
 
     const authStateChanged = async (authState: any) => {
         if (!authState) {
@@ -52,16 +55,32 @@ export default function useFirebaseAuth() {
         setLoading(true);
     };
 
+    const getUserStripeId = async (uid: string): Promise<string> => {
+        let stripeId = "";
+
+        const docRef = doc(db, "users", uid);
+        const docSnap = await getDoc(docRef);
+        
+        if (docSnap.exists()) {
+            var data = docSnap.data();
+            stripeId = data.stripeId
+            console.log("Document data:", docSnap.data());
+        } else {
+            // docSnap.data() will be undefined in this case
+            console.log("No such document!");
+        }
+        
+        return stripeId
+    }
+
     const register = async (username: string, email: string, password: string): Promise<User | null> => {
        try {
         await createUserWithEmailAndPassword(auth, email, password).catch((err) =>
           { throw err }
         );
         if (auth.currentUser) {
+            await updateProfile(auth.currentUser, { displayName: username })
             await sendEmailVerification(auth.currentUser).catch((err) => console.log(err));
-            await setDoc(doc(db, "users", auth.currentUser.uid), {
-                username: username,
-            });
         }
       } catch (err) {
         throw err
@@ -92,6 +111,7 @@ export default function useFirebaseAuth() {
 
     return {
         authUser,
+        getUserStripeId,
         loading,
         register,
         signIn,

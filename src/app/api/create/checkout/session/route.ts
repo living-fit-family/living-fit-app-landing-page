@@ -4,9 +4,7 @@ import { stripe } from '../../../../../lib/stripe'
 export async function POST(request: NextRequest) {
   const jsonData = await request.json();
   
-  const uid = jsonData.uid
-  const username = jsonData.username;
-  const email = jsonData.email;
+  const { stripeId } = jsonData
 
   // Get current date
   var date = new Date();
@@ -18,12 +16,8 @@ export async function POST(request: NextRequest) {
   var unixTimeStamp = Math.floor(date.getTime() / 1000);
   
   const session = await stripe.checkout.sessions.create({
+    customer: stripeId,
     billing_address_collection: 'auto',
-    customer_email: email,
-    metadata: {
-      uid,
-      username,
-    },
     line_items: [
       {
         price: process.env.STRIPE_PRICE,
@@ -35,7 +29,7 @@ export async function POST(request: NextRequest) {
     subscription_data: {
       trial_settings: {
         end_behavior: {
-          missing_payment_method: 'pause',
+          missing_payment_method: 'cancel',
         },
       },
       trial_end: unixTimeStamp,

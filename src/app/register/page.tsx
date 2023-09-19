@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
+import { ChangeEvent, FormEvent, Fragment, use, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useAuth, } from '../../context/AuthUserContext';
@@ -25,12 +25,10 @@ const showError = (errorMessage: string) => {
     )
 }
 
-const createCheckoutSession = async (uid: string, email: string, username: string) => {
+const createCheckoutSession = async (stripeId: string) => {
     try {
         const res = await axios.post('/api/create/checkout/session', {
-            uid: uid,
-            email,
-            username,
+            stripeId: stripeId,
         })
         const { session } = res.data
         return session;
@@ -40,7 +38,7 @@ const createCheckoutSession = async (uid: string, email: string, username: strin
 }
 
 export default function SignUp() {
-    const { register } = useAuth()
+    const { register, getUserStripeId } = useAuth()
     const router = useRouter()
     
     const [username, setUsername] = useState('');
@@ -61,8 +59,11 @@ export default function SignUp() {
                 setShowOverlay(true)
                 const user: User | null = await register(username, email, password);
                 if (user) {
-                    const session = await createCheckoutSession(user.uid, email, username)
-                    router.push(session.url)
+                    setTimeout(async () => {
+                        const stripeId = await getUserStripeId(user.uid)
+                        const session = await createCheckoutSession(stripeId)
+                        router.push(session.url)
+                    }, 5000)
                 }
             } else {
                 setError(true)
