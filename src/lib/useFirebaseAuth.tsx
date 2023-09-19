@@ -21,7 +21,7 @@ import {
 import { 
     doc, 
     getDoc,
-    onSnapshot
+    updateDoc
 } from "firebase/firestore"; 
 
 
@@ -55,7 +55,7 @@ export default function useFirebaseAuth() {
         setLoading(true);
     };
 
-    const getUserStripeId = async (uid: string): Promise<string> => {
+    const getUserStripeId = async (username: string, uid: string): Promise<string> => {
         let stripeId = "";
 
         const docRef = doc(db, "users", uid);
@@ -65,6 +65,9 @@ export default function useFirebaseAuth() {
             var data = docSnap.data();
             stripeId = data.stripeId
             console.log("Document data:", docSnap.data());
+            await updateDoc(docRef, {
+                username
+            });
         } else {
             // docSnap.data() will be undefined in this case
             console.log("No such document!");

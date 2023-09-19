@@ -60,7 +60,7 @@ export default function SignUp() {
                 const user: User | null = await register(username, email, password);
                 if (user) {
                     setTimeout(async () => {
-                        const stripeId = await getUserStripeId(user.uid)
+                        const stripeId = await getUserStripeId(username, user.uid)
                         const session = await createCheckoutSession(stripeId)
                         router.push(session.url)
                     }, 5000)
