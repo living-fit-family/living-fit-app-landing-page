@@ -94,7 +94,114 @@ export default function SignUp() {
                     <span className="sr-only">{companyName}</span>
                     <img alt="logo" className="h-16 w-auto m-auto sm:h-16" src={logo} />
                     <h1 className="mb-8 text-3xl text-center">Sign up</h1>
-                    <form onSubmit={handleSubmit}>
+                    <form>
+              <div className="mb-5">
+                <label
+                  for="name"
+                  className="mb-[10px] block text-sm text-black dark:text-white"
+                >
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="First and last name"
+                  className="w-full rounded-md border border-stroke bg-white py-3 px-6 text-base font-medium text-body outline-none focus:border-primary focus:shadow-input dark:border-stroke-dark dark:bg-black dark:text-white dark:focus:border-primary"
+                />
+              </div>
+
+              <div className="mb-5">
+                <label
+                  for="email"
+                  className="mb-[10px] block text-sm text-black dark:text-white"
+                >
+                  Work Email
+                </label>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="w-full rounded-md border border-stroke bg-white py-3 px-6 text-base font-medium text-body outline-none focus:border-primary focus:shadow-input dark:border-stroke-dark dark:bg-black dark:text-white dark:focus:border-primary"
+                />
+              </div>
+
+              <div className="mb-6">
+                <label
+                  for="password"
+                  class="mb-[10px] block text-sm text-black dark:text-white"
+                >
+                  Your password
+                </label>
+                <input
+                  type="password"
+                  placeholder="Enter your password"
+                  className="w-full rounded-md border border-stroke bg-white py-3 px-6 text-base font-medium text-body outline-none focus:border-primary focus:shadow-input dark:border-stroke-dark dark:bg-black dark:text-white dark:focus:border-primary"
+                />
+              </div>
+              <div className="mb-[30px]">
+                <label
+                  for="privacy-policy"
+                  className="flex cursor-pointer select-none text-base text-body"
+                >
+                  <input
+                    type="checkbox"
+                    name="privacy-policy"
+                    id="privacy-policy"
+                    className="keep-signed sr-only"
+                  />
+                  <span
+                    className="box mr-[10px] mt-[4px] flex h-[22px] w-full max-w-[22px] items-center justify-center rounded-sm border-[.7px] border-stroke bg-white dark:border-stroke-dark dark:bg-black"
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="icon hidden"
+                    >
+                      <g clip-path="url(#clip0_73_381)">
+                        <path
+                          d="M6.66649 10.1148L12.7945 3.98608L13.7378 4.92875L6.66649 12.0001L2.42383 7.75742L3.36649 6.81475L6.66649 10.1148Z"
+                          fill="white"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_73_381">
+                          <rect width="16" height="16" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </span>
+                  <p>
+                    By creating account means you agree to the {" "}
+                    <a
+                      href="javascript:void(0)"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline"
+                    >
+                      Terms and Conditions
+                    </a>
+                    , and our {" "}
+                    <a
+                      href="javascript:void(0)"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline"
+                    >
+                      Privacy Policy
+                    </a>
+                  </p>
+                </label>
+              </div>
+
+              <button
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-primary p-3 text-base font-medium text-white hover:bg-opacity-90"
+              >
+                Sign Up
+              </button>
+            </form>
+                    {/* <form onSubmit={handleSubmit}>
                         <input
                             value={username}
                             onChange={handleChange(setUsername)}
@@ -167,7 +274,7 @@ export default function SignUp() {
                             type="submit"
                             className="w-full text-center py-3 rounded bg-primary text-white hover:bg-green-dark focus:outline-none my-1"
                         >Create Account</button>
-                    </form>
+                    </form> */}
                     <div className="text-center text-sm text-grey-dark mt-4">
                         By signing up, you agree to the&nbsp;
                         <a className="no-underline border-b border-grey-dark text-grey-dark" href="#">

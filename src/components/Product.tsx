@@ -104,7 +104,7 @@ const Product = () => {
                   <p
                     className="mb-[30px] text-base leading-relaxed text-body"
                   >
-                    Create your workout based on what you have available. Whether you're at a commercial gym or home gym, there are a variety of exercise options that can work for you.
+                    Create your workout based on what you have available. Whether you are at a commercial gym or home gym, there are a variety of exercise options that can work for you.
                   </p>
 
                   {/* <a

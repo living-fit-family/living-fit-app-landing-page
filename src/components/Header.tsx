@@ -110,14 +110,14 @@ const Header = () => {
             className="mr-[60px] flex items-center justify-end lg:mr-0"
           >
             <a
-              href="signin.html"
+              href="/login"
               className="hidden py-[10px] px-6 text-base font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary sm:inline-block"
             >
               Sign In
             </a>
 
             <a
-              href="signup.html"
+              href="/register"
               className="hidden rounded-md bg-primary py-[10px] px-[30px] text-base font-medium text-white hover:bg-opacity-90 sm:inline-block"
             >
               Sign Up
