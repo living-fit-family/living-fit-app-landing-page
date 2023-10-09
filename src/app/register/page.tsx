@@ -124,7 +124,7 @@ export default function SignUp() {
                 onChange={handleChange(setEmail)}
                 required
                   type="email"
-                  placeholder="example@email.com"
+                  placeholder="email"
                   className="w-full rounded-md border border-stroke bg-white py-3 px-6 text-base font-medium text-body outline-none focus:border-primary focus:shadow-input dark:border-stroke-dark dark:bg-black dark:text-white dark:focus:border-primary"
                 />
               </div>
