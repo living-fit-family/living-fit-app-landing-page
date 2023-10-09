@@ -5,49 +5,65 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'class',
   theme: {
-    fontSize: {
-      xs: '0.75rem',
-      sm: '0.875rem',
-      base: '1rem',
-      lg: '1.125rem',
-      xl: '1.25rem',
-      '2xl': '1.5rem',
-      '3xl': '1.875rem',
-      '4xl': '2.25rem',
-      '5xl': '3rem',
-      '6xl': '4rem',
+    fontFamily: {
+      inter: ['Inter', 'sans-serif'],
+    },
+    container: {
+      center: true,
+      padding: '1rem',
+    },
+    colors: {
+      current: 'currentColor',
+      transparent: 'transparent',
+      white: '#FFFFFF',
+      black: '#181C31',
+      primary: '#55C856',
+      secondary: '',
+      stroke: '#EBEFF4',
+      dark: '#1F233A',
+      body: '#79808A',
+      gray: '#F8F9FF',
+      'stroke-dark': '#34374A',
+    },
+    screens: {
+      sm: '575px',
+      // => @media (min-width: 576px) { ... }
+
+      md: '768px',
+      // => @media (min-width: 768px) { ... }
+
+      lg: '992px',
+      // => @media (min-width: 992px) { ... }
+
+      xl: '1200px',
+      // => @media (min-width: 1200px) { ... }
+
+      '2xl': '1400px',
+      // => @media (min-width: 1400px) { ... }
     },
     extend: {
-      animation: {
-        vote: 'vote 1s ease-in-out',
-      },
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-1': 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(85,200,86,1) 35%, rgba(0,212,255,1) 100%)',
+        'gradient-2': 'linear-gradient(120.12deg, #FF8FE8 0%, #FFC960 100%)',
+        'gradient-3': 'linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 100%)',
+        texture: "url('../images/graphics/texture.svg')",
       },
-      colors: {
-        primary: '#55C856',
-        secondary: '#39B13A',
-        tertiary: '#99a0a3',
-        border: '#1a2e35',
-        background: '#ffffff',
+      screens: {
+        xs: '450px',
+        '3xl': '1500px',
       },
-      keyframes: {
-        vote: {
-          '0%, 100%': {
-            transform: 'rotate(0deg)',
-          },
-          '25%': {
-            transform: 'rotate(-30deg)',
-          },
-          '75%': {
-            transform: 'rotate(30deg)',
-          },
-        },
+      boxShadow: {
+        card: '0px 1px 5px rgba(45, 74, 170, 0.14)',
+        'card-dark': '0px 1px 5px rgba(16, 25, 55, 0.14)',
+        input: '0px 10px 30px rgba(74, 108, 247, 0.08)',
+      },
+      dropShadow: {
+        card: '0px 1px 5px rgba(45, 74, 170, 0.14)',
+        'card-dark': '0px 1px 5px rgba(16, 25, 55, 0.14)',
       },
     },
   },
   plugins: [],
-}
+};

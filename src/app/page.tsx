@@ -1,43 +1,34 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Header from '../components/Header';
 import MainHero from '../components/MainHero';
-import MainHeroImage from '../components/MainHeroImage';
 import Product from '../components/Product';
-import LazyShow from '../components/LazyShow';
 import Features from '../components/Features';
 import Pricing from '../components/Pricing'
+import WorkProcess from '../components/WorkProcess';
+import Screens from '../components/Screens';
+import CTA from '../components/CTA';
 
 export default function App() {
   return (
-      <div className={`bg-background grid gap-y-16 overflow-hidden`}>
-        <div className={`relative bg-background`}>
-          <div className="max-w-7xl mx-auto">
-            <div
-              className={`relative z-10 pb-8 bg-background sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32`}
-            >
-              <Header />
-              <MainHero />
-            </div>
-          </div>
-          <MainHeroImage />
-        </div>
-        <LazyShow>
-          <>
-            <Product />
-          </>
-        </LazyShow>
-        <LazyShow>
-          <>
-            <Features />
-          </>
-        </LazyShow>
-        <LazyShow>
-          <>
-            <Pricing />
-          </>
-        </LazyShow>
-      </div>
+    <div>
+      <Header />
+      <MainHero />
+      <Features />
+      <Product />
+      <WorkProcess />
+      <Pricing />
+      {/* <Screens /> */}
+      {/* <CTA /> */}
+      <a
+      href="javascript:void(0)"
+      className="back-to-top fixed bottom-8 right-8 left-auto z-[999] hidden h-10 w-10 items-center justify-center rounded-md bg-primary text-white shadow-md duration-300 ease-in-out hover:bg-opacity-80"
+    >
+      <span
+        className="mt-[6px] h-3 w-3 rotate-45 border-t border-l border-white"
+      ></span>
+    </a>
+    </div>
   );
 }

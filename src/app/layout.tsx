@@ -1,6 +1,8 @@
-import './globals.css'
+import '../../public/css/style.css'
+
 import { Inter } from 'next/font/google'
 import { AuthUserProvider } from '../context/AuthUserContext'
+import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,11 +18,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+      <link rel="stylesheet" href="css/style.css" />
+      </head>
         <body className={inter.className}>
           <AuthUserProvider>
             {children}
           </AuthUserProvider>
         </body>
+        <Script rel='preload' type='module' src='js/index.js' crossOrigin='anonymous'/>
     </html>
   )
 }
