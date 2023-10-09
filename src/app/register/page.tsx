@@ -94,7 +94,7 @@ export default function SignUp() {
                     <span className="sr-only">{companyName}</span>
                     <img alt="logo" className="h-16 w-auto m-auto sm:h-16" src={logo} />
                     <h1 className="mb-8 text-3xl text-center">Sign up</h1>
-                    <form>
+                    <form onSubmit={handleSubmit}>
               <div className="mb-5">
                 {/* <label
                   for="name"
