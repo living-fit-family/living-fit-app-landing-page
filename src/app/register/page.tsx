@@ -100,25 +100,31 @@ export default function SignUp() {
                   for="name"
                   className="mb-[10px] block text-sm text-black dark:text-white"
                 >
-                  Full Name
+                  Username
                 </label>
                 <input
+                    value={username}
+                    onChange={handleChange(setUsername)}
+                    required
                   type="text"
-                  placeholder="First and last name"
+                  placeholder="username"
                   className="w-full rounded-md border border-stroke bg-white py-3 px-6 text-base font-medium text-body outline-none focus:border-primary focus:shadow-input dark:border-stroke-dark dark:bg-black dark:text-white dark:focus:border-primary"
                 />
               </div>
-
+              {error ? showError(errorMessage) : null}
               <div className="mb-5">
                 <label
                   for="email"
                   className="mb-[10px] block text-sm text-black dark:text-white"
                 >
-                  Work Email
+                  Email
                 </label>
                 <input
+                value={email}
+                onChange={handleChange(setEmail)}
+                required
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder="example@email.com"
                   className="w-full rounded-md border border-stroke bg-white py-3 px-6 text-base font-medium text-body outline-none focus:border-primary focus:shadow-input dark:border-stroke-dark dark:bg-black dark:text-white dark:focus:border-primary"
                 />
               </div>
@@ -128,11 +134,14 @@ export default function SignUp() {
                   for="password"
                   class="mb-[10px] block text-sm text-black dark:text-white"
                 >
-                  Your password
+                  Password
                 </label>
                 <input
-                  type="password"
-                  placeholder="Enter your password"
+                value={password}
+                onChange={handleChange(setPassWord)}
+                type={isPasswordVisible ? "text" : "password"}
+                required
+                  placeholder="password"
                   className="w-full rounded-md border border-stroke bg-white py-3 px-6 text-base font-medium text-body outline-none focus:border-primary focus:shadow-input dark:border-stroke-dark dark:bg-black dark:text-white dark:focus:border-primary"
                 />
               </div>
