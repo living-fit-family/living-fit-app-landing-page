@@ -96,12 +96,12 @@ export default function SignUp() {
                     <h1 className="mb-8 text-3xl text-center">Sign up</h1>
                     <form>
               <div className="mb-5">
-                <label
+                {/* <label
                   for="name"
                   className="mb-[10px] block text-sm text-black dark:text-white"
                 >
                   Username
-                </label>
+                </label> */}
                 <input
                     value={username}
                     onChange={handleChange(setUsername)}
@@ -113,12 +113,12 @@ export default function SignUp() {
               </div>
               {error ? showError(errorMessage) : null}
               <div className="mb-5">
-                <label
+                {/* <label
                   for="email"
                   className="mb-[10px] block text-sm text-black dark:text-white"
                 >
                   Email
-                </label>
+                </label> */}
                 <input
                 value={email}
                 onChange={handleChange(setEmail)}
@@ -130,12 +130,12 @@ export default function SignUp() {
               </div>
 
               <div className="mb-6">
-                <label
+                {/* <label
                   for="password"
                   class="mb-[10px] block text-sm text-black dark:text-white"
                 >
                   Password
-                </label>
+                </label> */}
                 <input
                 value={password}
                 onChange={handleChange(setPassWord)}
