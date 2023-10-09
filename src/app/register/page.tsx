@@ -136,64 +136,6 @@ export default function SignUp() {
                   className="w-full rounded-md border border-stroke bg-white py-3 px-6 text-base font-medium text-body outline-none focus:border-primary focus:shadow-input dark:border-stroke-dark dark:bg-black dark:text-white dark:focus:border-primary"
                 />
               </div>
-              <div className="mb-[30px]">
-                <label
-                  for="privacy-policy"
-                  className="flex cursor-pointer select-none text-base text-body"
-                >
-                  <input
-                    type="checkbox"
-                    name="privacy-policy"
-                    id="privacy-policy"
-                    className="keep-signed sr-only"
-                  />
-                  <span
-                    className="box mr-[10px] mt-[4px] flex h-[22px] w-full max-w-[22px] items-center justify-center rounded-sm border-[.7px] border-stroke bg-white dark:border-stroke-dark dark:bg-black"
-                  >
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="icon hidden"
-                    >
-                      <g clip-path="url(#clip0_73_381)">
-                        <path
-                          d="M6.66649 10.1148L12.7945 3.98608L13.7378 4.92875L6.66649 12.0001L2.42383 7.75742L3.36649 6.81475L6.66649 10.1148Z"
-                          fill="white"
-                        />
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_73_381">
-                          <rect width="16" height="16" fill="white" />
-                        </clipPath>
-                      </defs>
-                    </svg>
-                  </span>
-                  <p>
-                    By creating account means you agree to the {" "}
-                    <a
-                      href="javascript:void(0)"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary hover:underline"
-                    >
-                      Terms and Conditions
-                    </a>
-                    , and our {" "}
-                    <a
-                      href="javascript:void(0)"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary hover:underline"
-                    >
-                      Privacy Policy
-                    </a>
-                  </p>
-                </label>
-              </div>
-
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-primary p-3 text-base font-medium text-white hover:bg-opacity-90"
