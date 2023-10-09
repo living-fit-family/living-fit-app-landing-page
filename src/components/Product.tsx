@@ -42,7 +42,7 @@ const Product = () => {
                     Stay disciplined and consistent with the provided workout templates. Plan ahead by selecting your excerises for each day ahead of time.
                   </p>
 
-                  <div className="mb-[30px] flex items-center">
+                  {/* <div className="mb-[30px] flex items-center">
                     <div
                       className="mr-[22px] flex h-[60px] w-[60px] items-center justify-center rounded-full border border-stroke text-xl font-semibold text-black dark:border-stroke-dark dark:bg-dark dark:text-white"
                     >
@@ -76,7 +76,7 @@ const Product = () => {
                         Ut ultricies lacus non fermentum ultrices.
                       </p>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
