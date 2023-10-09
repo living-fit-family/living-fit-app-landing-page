@@ -13,11 +13,11 @@ const WorkProcess = () => {
             >
               How it Works?
             </h2>
-            <p className="text-base text-body">
+            {/* <p className="text-base text-body">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
               convallis tortor eros. Donec vitae tortor lacus. Phasellus aliquam
               ante in maximus.
-            </p>
+            </p> */}
           </div>
         </div>
 
@@ -59,10 +59,10 @@ const WorkProcess = () => {
                   >
                     Setup your profile
                   </h3>
-                  <p className="text-base text-body">
+                  {/* <p className="text-base text-body">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
                     convallis tortor.
-                  </p>
+                  </p> */}
                 </div>
               </div>
               
@@ -99,10 +99,10 @@ const WorkProcess = () => {
                   >
                     Install the App
                   </h3>
-                  <p className="text-base text-body">
+                  {/* <p className="text-base text-body">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
                     convallis tortor.
-                  </p>
+                  </p> */}
                 </div>
               </div>
 
@@ -139,10 +139,10 @@ const WorkProcess = () => {
                   >
                     Enjoy the features!
                   </h3>
-                  <p className="text-base text-body">
+                  {/* <p className="text-base text-body">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
                     convallis tortor.
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </div>
