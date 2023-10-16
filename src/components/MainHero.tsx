@@ -44,7 +44,7 @@ const MainHero = () => {
                     className="mr-6 mb-6 inline-flex h-[60px] items-center rounded-lg bg-primary py-[14px] px-[30px] text-white hover:bg-opacity-90 dark:bg-white dark:text-black dark:hover:bg-opacity-90"
                   >
                     <span
-                      className="m-[18px] p-[18px] leading-relaxed"
+                      className="m-[18px] p-[18px] leading-relaxed font-semibold"
                     >
                       GET 7 DAYS FREE
                     </span>
