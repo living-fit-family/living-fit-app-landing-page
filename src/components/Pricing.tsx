@@ -48,7 +48,7 @@ const Pricing = () => {
             <div className="mx-auto max-w-xs px-8">
               <p className="text-base font-semibold text-gray-600">Pay monthly, cancel anytime.</p>
               <p className="mt-6 flex items-baseline justify-center gap-x-2">
-                <span className="text-5xl font-bold tracking-tight text-gray-900 line-through decoration-green-200 decoration-5">$29.99</span>
+                <span className="text-5xl font-bold tracking-tight text-gray-900">$29.99</span>
                 <span className="text-sm font-semibold leading-6 tracking-wide text-gray-600">/mo USD</span>
               </p>
               <a href="/register" className="mt-10 block w-full rounded-md bg-primary px-3 py-2 text-center text-sm font-semibold text-white">Start 7-day free trial</a>
