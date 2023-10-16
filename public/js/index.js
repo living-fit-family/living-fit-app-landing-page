@@ -1,51 +1,3 @@
-// import '../../node_modules/glightbox/dist/css/glightbox.min.css';
-// import '../../node_modules/swiper/css';
-// import 'swiper/css';
-// import '../../node_modules/swiper/css/pagination';
-// import '../css/animate.css';
-// import '../css/style.css';
-
-// import GLightbox from 'glightbox';
-// import Swiper, { Navigation } from 'swiper';
-// import WOW from 'wowjs';
-
-// window.wow = new WOW.WOW({
-//   live: false,
-// });
-
-// window.wow.init({
-//   offset: 50,
-// });
-
-// Testimonial
-// const testimonial = new Swiper('.mySwiper', {
-//   // configure Swiper to use modules
-//   modules: [Navigation],
-//   slidesPerView: 1,
-//   spaceBetween: 30,
-//   navigation: {
-//     nextEl: '.swiper-button-next',
-//     prevEl: '.swiper-button-prev',
-//   },
-//   loop: true,
-//   breakpoints: {
-//     // when window width is >= 640px
-//     768: {
-//       slidesPerView: 3,
-//       spaceBetween: 40,
-//     },
-//   },
-// });
-
-// //========= glightbox
-// GLightbox({
-//   href: "https://www.youtube.com/watch?v=r44RKWyfcFw&fbclid=IwAR21beSJORalzmzokxDRcGfkZA1AtRTE__l5N4r09HcGS5Y6vOluyouM9EM",
-//   type: "video",
-//   source: "youtube", //vimeo, youtube or local
-//   width: 900,
-//   autoplayVideos: true,
-// });
-
 (function () {
   'use strict';
 
@@ -128,9 +80,9 @@
   };
 
   // call theme switch on clicking buttons
-  themeSwitcher.addEventListener('click', () => {
-    themeSwitch();
-  });
+  // themeSwitcher.addEventListener('click', () => {
+  //   themeSwitch();
+  // });
 
   // invoke theme check on initial load
   themeCheck();

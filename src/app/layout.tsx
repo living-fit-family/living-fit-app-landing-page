@@ -1,5 +1,5 @@
 import '../../public/css/style.css'
-
+import '../../public/css/animate.css';
 import { Inter } from 'next/font/google'
 import { AuthUserProvider } from '../context/AuthUserContext'
 import Script from 'next/script'

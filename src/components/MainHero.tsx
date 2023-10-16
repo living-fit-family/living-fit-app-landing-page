@@ -46,7 +46,7 @@ const MainHero = () => {
                     <span
                       className="m-[18px] p-[18px] leading-relaxed"
                     >
-                      Get Started
+                      GET 7 DAYS FREE
                     </span>
 
                   </a>
