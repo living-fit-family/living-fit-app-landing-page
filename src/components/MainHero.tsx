@@ -46,7 +46,7 @@ const MainHero = () => {
                     <span
                       className="m-[18px] p-[18px] leading-relaxed font-semibold"
                     >
-                      GET 7 DAYS FREE
+                      START 7-DAY FREE TRIAL
                     </span>
 
                   </a>
