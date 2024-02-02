@@ -1,13 +1,13 @@
 'use client'
 
-import { 
-    useState, 
-    useEffect 
+import {
+    useState,
+    useEffect
 } from 'react';
 
-import { 
-    auth, 
-    db 
+import {
+    auth,
+    db
 } from './firebase';
 
 import {
@@ -18,11 +18,14 @@ import {
     signInWithEmailAndPassword
 } from 'firebase/auth';
 
-import { 
-    doc, 
+import {
+    doc,
     getDoc,
+    addDoc,
+    collection,
+    onSnapshot,
     updateDoc
-} from "firebase/firestore"; 
+} from "firebase/firestore";
 
 
 const formatAuthUser = (user: User) => ({
@@ -33,7 +36,6 @@ const formatAuthUser = (user: User) => ({
 export default function useFirebaseAuth() {
     const [authUser, setAuthUser] = useState({})
     const [loading, setLoading] = useState(true)
-    const [firestoreUser, setFirestoreUser] = useState({})
 
     const authStateChanged = async (authState: any) => {
         if (!authState) {
@@ -55,40 +57,55 @@ export default function useFirebaseAuth() {
         setLoading(true);
     };
 
-    const getUserStripeId = async (username: string, uid: string): Promise<string> => {
-        let stripeId = "";
+    const createCheckoutSession = async (username: string, uid: string): Promise<void> => {
+        const checkoutSessionRef = await addDoc(
+            collection(doc(db, 'users', uid), 'checkout_sessions'),
+            {
+                cancel_url: `${window.location.origin}/?canceled=true`,
+                price: 'price_1OfA86ANCpLvBRruwFNYr7KN',
+                billing_address_collection: 'auto',
+                success_url: `${window.location.origin}/confirmation/?success=true&session_id={CHECKOUT_SESSION_ID}`,
+                trial_from_plan: true
+            }
+        )
 
-        const docRef = doc(db, "users", uid);
-        const docSnap = await getDoc(docRef);
-        
-        if (docSnap.exists()) {
-            var data = docSnap.data();
-            stripeId = data.stripeId
-            console.log("Document data:", docSnap.data());
-            await updateDoc(docRef, {
-                username
-            });
-        } else {
-            // docSnap.data() will be undefined in this case
-            console.log("No such document!");
-        }
-        
-        return stripeId
+        onSnapshot(checkoutSessionRef, async (doc) => {
+            // @ts-expect-error
+            const { error, url } = doc.data()
+
+            if (error) {
+                // Show an error to your customer and
+                // inspect your Cloud Function logs in the Firebase console.
+                alert(`An error occured: ${error.message}`);
+            }
+
+            if (url) {
+                console.log(url)
+                window.location.assign(url)
+            }
+        })
+
+        const userRef = doc(db, "users", uid);
+        onSnapshot(userRef, async (doc) => {
+            if (doc.exists()) {
+                await updateDoc(userRef, {
+                    username
+                })
+            }
+        })
     }
 
-    const register = async (username: string, email: string, password: string): Promise<User | null> => {
-       try {
-        await createUserWithEmailAndPassword(auth, email, password).catch((err) =>
-          { throw err }
-        );
-        if (auth.currentUser) {
-            await updateProfile(auth.currentUser, { displayName: username })
-            await sendEmailVerification(auth.currentUser).catch((err) => console.log(err));
+    const register = async (email: string, password: string): Promise<User | null> => {
+        try {
+            await createUserWithEmailAndPassword(auth, email, password).catch((err) => { throw err }
+            );
+            if (auth.currentUser) {
+                await sendEmailVerification(auth.currentUser).catch((err) => console.log(err));
+            }
+        } catch (err) {
+            throw err
         }
-      } catch (err) {
-        throw err
-      }
-       return auth.currentUser;
+        return auth.currentUser;
     }
 
     const signIn = async (email: string, password: string): Promise<User | null> => {
@@ -110,11 +127,11 @@ export default function useFirebaseAuth() {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(authStateChanged);
         return () => unsubscribe();
-      }, []);
+    }, []);
 
     return {
         authUser,
-        getUserStripeId,
+        createCheckoutSession,
         loading,
         register,
         signIn,
