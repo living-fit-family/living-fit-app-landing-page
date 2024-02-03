@@ -14,7 +14,6 @@ import {
     User,
     createUserWithEmailAndPassword,
     sendEmailVerification,
-    updateProfile,
     signInWithEmailAndPassword
 } from 'firebase/auth';
 
@@ -65,7 +64,8 @@ export default function useFirebaseAuth() {
                 price: 'price_1OfA86ANCpLvBRruwFNYr7KN',
                 billing_address_collection: 'auto',
                 success_url: `${window.location.origin}/confirmation/?success=true&session_id={CHECKOUT_SESSION_ID}`,
-                trial_from_plan: true
+                trial_from_plan: true,
+                allow_promotion_codes: true,
             }
         )
 
