@@ -60,7 +60,7 @@
       "old_description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
       "items": [
         {
-          "name": "Exercise Demos",
+          "name": "Exercise demos",
           "description": "Each excersise option is paired with a video demonstration from in person sessions, including number of sets and reps.",
           "icon": "/assets/images/react.png"
         },
@@ -70,13 +70,23 @@
           "icon": "/assets/images/tailwindcss.svg"
         },
         {
-          "name": "Personalized Nutrition Information",
+          "name": "Personalized nutrition information",
           "description": "Daily macros are caculated based on your unique goals and current physique. Your personalized macros are paired with helpful nutritional tips. ",
           "icon": "/assets/images/ts.png"
         },
         {
           "name": "Live chat with Luke and other members",
           "description": "Share your progreess, talk with other members, and get helpful tips from the trainer live from the app.",
+          "icon": "/assets/images/nextjs.svg"
+        },
+        {
+          "name": "Stay on track of your session",
+          "description": "Built-in rest and tabata timers help you stay accountable during your workout session.",
+          "icon": "/assets/images/nextjs.svg"
+        },
+        {
+          "name": "Track your strength",
+          "description": "Keep track of your strength as you log how much weight you are lifting per exercise.",
           "icon": "/assets/images/nextjs.svg"
         }
       ]
